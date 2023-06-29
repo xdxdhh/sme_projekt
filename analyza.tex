@@ -1,0 +1,412 @@
+\documentclass{article}
+\usepackage[czech]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{svg}
+\usepackage{float}
+
+%\graphicspath{{/home/xdxdhh/skola/3_rocnik/sme/Images/}}
+
+\geometry{
+  left=3cm,     % Adjust the left margin
+  right=3cm,    % Adjust the right margin
+  top=3cm,    % Adjust the top margin
+  bottom=2.5cm  % Adjust the bottom margin
+}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+% Title and author
+\title{Semestrální práce do předmětu SME}
+\author{Diana Varšíková}
+\date{\today}
+
+\maketitle
+
+% Start of the document
+\section{Zadání}
+Byla provedena studie vlivu podávání jistého léku na pokles jistých rozměrových parametrů lidského oka (CBT1, CBT2, CBT3) a nitroočního tlaku (IOP). 
+Všechny hodnoty byly změřeny na začátku léčby (baseline), po dvou a osmi týdnech léčby. 
+Pomocí analýzy rozptylu jednoduchého třídění otestujte rozdílnosti hodnot parametrů CBT1, CBT2, CTB3 a IOP naměřených v jednotlivých návštěvách. 
+Ověřte podmínky pro použití analýzy rozptylu a výsledky, včetně základních deskriptivnich statistik (průměry, odchylky, odlehlá pozorování atd.), 
+uveďte ve formě tabulek a grafů.
+   
+
+% Rest of the document
+\section{Popis dat}
+
+Měření bylo prováděno na celkem 43 pacientech. Bylo opakováno před začátkem podávání léků, 2 týdny po začátku a 8 týdnů po začátku.
+Cílem analýzy je otestovat rozdílnost hodnot parametrů CBT1, CBT2, CBT3 a IOP naměřených při jednotlivých návštěvách lékaře
+a tedy ověřit vliv léku na dané parametry. Pro první náhled na dané veličiny lze použít krabicové grafy.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includesvg[width=\textwidth]{Images/violin_CBT1.svg}
+    \caption{Krabicový graf CBT1}
+  \end{subfigure}
+  \begin{subfigure}{0.45\textwidth}
+    \includesvg[width=\textwidth]{Images/violin_CBT2.svg}
+    \caption{Krabicový graf CBT2}
+  \end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includesvg[width=\textwidth]{Images/violin_CBT3.svg}
+    \caption{Krabicový graf CBT3}
+  \end{subfigure}
+  \begin{subfigure}{0.45\textwidth}
+    \includesvg[width=\textwidth]{Images/violin_IOP.svg}
+    \caption{Krabicový graf IOP}
+  \end{subfigure}
+\end{figure}
+
+Po jistém průzkumu se zdá, že veličiny CBT by mohly popisovat spektrální citlivosti lidského oka pro červenou, modrou a zelenou barvu.
+Tyto veličiny běžně nabývají hodnot od 0 do 1.
+V přiloženém datasetu se nachází dvě hodnoty vyšší než 1 (konkrétně 1.23 a 1.031) u dvou různých pacientů.
+Jelikož se zároveň jedná o odlehlé hodnoty od ostatních, tito dva pacienti budou z následné analýzy vynecháni.
+Ty odlehlé hodnoty, které jsou ale stále v rozmezí [0,1] budou v datasetu zanechány.
+Zbývají tedy data o 41 pacientech.\\
+
+Normální hodnoty nitroočního tlaku se pohybují v rozmezí 10-20 mm Hg, avšak při onemocnění očí, například zákalech, mohou dosahovat i vyšších hodnot.
+Při hodnotách nitoočního tlaku nad 30 se jedná již o vážné akutní zákaly.
+Pro nitrooční tlak se tedy žádné odlehlé pozorování nevynechalo.
+
+Z krabicových grafů jde vidět, že na začátku mají pacienti daleko vyšší hodnoty nitroočního tlaku než běžná populace.
+Dále je patrné že IOP s časem klesá, což by mohlo naznačovat, že pacienti pozitivně reagují na lék.
+
+Pro účely analýzy jsou veličiny označeny předponami W0, W2 a W8.
+V následující tabulce jsou shrnuty deskriptivní statistiky po vyřazení odlehlých pozorování.
+
+\begin{table}[ht]
+  \footnotesize
+  \centering
+  \caption{Deskriptivní statistiky po ostranění odlehlých pozorování}
+  \begin{tabular}{|ccccccccccccc|}
+    \hline
+    & \multicolumn{4}{|c|}{Před podáváním} & \multicolumn{4}{c|}{Po 2 týdnech} & \multicolumn{4}{c|}{Po 8 týdnech} \\
+    \hline
+    & CBT1 & CBT2 & CBT3 & IOP & CBT1 & CBT2 & CBT3 & IOP & CBT1 & CBT2 & CBT3 & IOP \\
+    \hline
+    průměr & 0.67 & 0.50 & 0.39 & 21.46 & 0.64 & 0.49 & 0.39 & 19.05 & 0.62 & 0.49 & 0.39 & 17.76 \\
+    std & 0.12 & 0.08 & 0.09 & 4.30 & 0.13 & 0.10 & 0.06 & 3.67 & 0.15 & 0.11 & 0.07 & 3.77 \\
+    min & 0.44 & 0.33 & 0.24 & 13.00 & 0.43 & 0.28 & 0.24 & 14.00 & 0.35 & 0.26 & 0.22 & 11.00 \\
+    25\% & 0.56 & 0.44 & 0.34 & 18.00 & 0.54 & 0.42 & 0.35 & 17.00 & 0.50 & 0.41 & 0.35 & 15.00 \\
+    50\% & 0.69 & 0.50 & 0.39 & 22.00 & 0.60 & 0.49 & 0.40 & 18.00 & 0.58 & 0.48 & 0.40 & 17.00 \\
+    75\% & 0.76 & 0.57 & 0.42 & 25.00 & 0.75 & 0.57 & 0.43 & 22.00 & 0.75 & 0.58 & 0.44 & 19.00 \\
+    max & 0.90 & 0.65 & 0.75 & 29.00 & 0.83 & 0.66 & 0.48 & 29.00 & 0.90 & 0.67 & 0.52 & 26.00 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\newpage
+
+\section{ANOVA - předpoklady}
+Pro ověření rozdílnosti parametrů před a po podávání léku použijeme metodu ANOVA, jejíž hypotézou je rovnost středních hodnot při jednotlivých návštěvách.
+Alternativou je nerovnost středních hodnot. V případě zamítnutí hypotézy je tedy nutné ještě vyšetřit, které hodnoty zamítnutí způsobily.
+
+Před použitím samotné metody je nutno ověřit předpoklady pro její funkčnost.
+Je tedy pro každou ze 4 trojic potřeba ověřit následující :
+\bigbreak
+1. normalitu dat\\
+2. stejné rozptyly dat\\ 
+3. nezávislost dat\\
+
+Vzhledem k tomu, že se díváme na vývoj jedné testovací skupiny v čase, tak neplatí předpoklad nezávislosti výběrů
+a vhodnější by bylo použít Repeated Measures ANOVA metodu.
+Zde bude ale použita pouze jednofaktorová ANOVA a následně správnost nalezených výsledků ověříme ještě párovým t-testem.
+
+K ověření normality dat použijeme pro každou z 12 veličin QQ plot a Lillieforsův test.
+Výpočet testu se provede funkcí $\mathbf{lilliefors}$ z Python knihovny $statsmodels$.
+
+
+\begin{figure}[H]
+  \centering
+    \includesvg[width=\textwidth]{Images/CBT1_qqplot.svg}
+    \caption{QQ plot pro CBT1}
+\end{figure}
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky Lillieforsova testu pro CBT1}
+  \begin{tabular}{|ccc|}
+    \hline
+    týden & KS-statistika & p-hodnota\\
+    \hline
+    W0 & 0.1314 & 0.0718\\
+    W2 & 0.1278 & 0.0901\\
+    W8 & 0.1364 & 0.0525\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Z QQ plotu lze vidět mírné odchylky od normálního rozdělení, především u první veličiny W0CBT1.
+Pro upřesnění použijeme Lillieforsův test. Z něj vidíme, že na hladině 0.05 nezamítáme hypotézu, že data W0CBT1, W0CBT2 a W0CBT3 mají normální rozdělení.
+
+\begin{figure}[H]
+  \centering
+    \includesvg[width=\textwidth]{Images/CBT2_qqplot.svg}
+    \caption{QQ plot pro CBT2}
+\end{figure}
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky Lillieforsova testu pro CBT2}
+  \begin{tabular}{|ccc|}
+    \hline
+    týden & KS-statistika & p-hodnota\\
+    \hline
+    W0 & 0.0899 & 0.5466\\
+    W2 & 0.1132 & 0.2116\\
+    W8 & 0.0897 & 0.5489\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Pro CBT2 nejsou na QQ plotu zřejmé velké výchylky oproti normálnímu rozdělení, snad kromě pravého chvostu.
+Z Lillieforsova testu opět vidíme, že na hladině 0.05 normalitu nezamítáme.
+
+\begin{figure}[H]
+  \centering
+    \includesvg[width=\textwidth]{Images/CBT3_qqplot.svg}
+    \caption{QQ plot pro CBT3}
+\end{figure}
+
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky Lillieforsova testu pro CBT3}
+  \begin{tabular}{|ccc|}
+    \hline
+    týden & KS-statistika & p-hodnota\\
+    \hline
+    W0 & 0.1482 & 0.0238\\
+    W2 & 0.1494 & 0.0223\\
+    W8 & 0.1064 & 0.2858\\
+    \hline
+  \end{tabular}
+\end{table}
+
+V QQ plotu pro W0CBT3 vidíme jedno velmi se vychylující pozorování.
+Obě p-hodnoty pro W0CBT3 i pro W2CBT3 jsou 0.02, tudíž Lillieforsův test zamítá na hladině 0.05 normalitu pro W0CBT3 i W2CBT3.
+Pro CBT3 tedy nebude možné použít ANOVA metodu.
+
+\begin{figure}[H]
+  \centering
+    \includesvg[width=\textwidth]{Images/IOP_qqplot.svg}
+    \caption{QQ plot pro IOP}
+\end{figure}
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky Lillieforsova testu pro IOP}
+  \begin{tabular}{|ccc|}
+    \hline
+    týden & KS-statistika & p-hodnota\\
+    \hline
+    W0 & 0.1310 & 0.0734\\
+    W2 & 0.1979 & 0.0009\\
+    W8 & 0.1269 & 0.0946\\
+    \hline
+  \end{tabular}
+\end{table}
+
+
+Pro veličinu W2IOP opět zamítáme hypotézu o normálním rozdělení na hladině 0.05.§§
+Pro veličiny IOP a CBT3 bude tedy nutné použít neparametrickou verzi ANOVA, tedy Kruskalův-Wallisův test.\\
+
+
+Jako poslední je potřeba otestovat rovnost rozptylů v daných skupinách.
+Pro normálně rozdělená data bude pro test rovnosti rozptylů použit Bartlettův test, který se nachází v balíku $scipy.stats$.
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky Bartlettova testu}
+  \begin{tabular}{|ccc|}
+    \hline
+    veličiny & testovací statistika & p-hodnota\\
+    \hline
+    W0CBT1, W2CBT1, W8CBT1 & 2.3455 & 0.3095\\
+    W0CBT2, W2CBT2, W8CBT2 & 3.5366 & 0.1706\\
+    W0CBT3, W2CBT3, W8CBT3 & 5.3946 & 0.0673\\
+    W0IOP, W2IOP, W8IOP & 1.1761 & 0.5554\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Podle Bartlettova testu nezamítáme pro žádné veličiny na hladině 0.05 hypotézu o rovnosti rozptylů.
+Pro data, pro něž jsme zamítli hypotézu o normálním rozdělení bude použit ještě Levene test, který slouží pro porovnání
+rozptylů dat, jež nejsou normálně rozdělena. Opět se nachází v balíku $scipy.stats$.
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky Leveneho testu}
+  \begin{tabular}{|ccc|}
+    \hline
+    veličiny & testovací statistika & p-hodnota\\
+    \hline
+    CBT3 & 0.4516 & 0.6376\\
+    IOP & 1.1727 & 0.3130\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Ani tento test nezamítá na hladině 0.05 rovnost rozptylů, tudíž předpoklad rovnosti rozptylů je splněn u všech 4 veličin.
+
+\newpage
+
+\section{ANOVA}
+
+Pro ověření vlivu léku na dané veličiny (CBT1, CBT2, CBT3, IOP) použijeme metodu ANOVA, kterou vždy porovnáme,
+jestli má trojice dat (před, 2 týdny po, 8 týdnů po) stejné střední hodnoty.
+Hypotézou je rovnost všech tří hodnot, alternativou je alespoň jedna nerovnost.
+
+Pro provedení samotné ANOVA metody lze v Pythonu použít funkce $\mathbf{f\_oneway}$ z balíku $scipy.stats$, která ovšem vrací jenom
+hodnotu F statistiky a p-hodnotu.
+Pro zisk celé tabulky analýzy rozptylu je nutné požít funkci $\mathbf{ols}$ z $statsmodels.formula.api$ pro tvorbu modelu
+a následně na ten model použít funkci $\mathbf{stats.anova\_lm}$ z $statsmodels.api$.
+
+Výsledkem metody je tabulka analýzy rozptylu, která obsahuje
+počet stupňů volnosti, hodnota F statistiky, součet čtverců(SS)
+
+zdroj rozptylu
+Tabu
+
+\begin{figure}[H]
+  \centering
+    \begin{tabular}{|ccccc|}
+      \hline
+      zdroj & SS & df & F & p-hodnota \\
+      \hline
+      class & 0.0554 & 2 & 1.603 & 0.205 \\
+      residual & 2.076 & 120 & - & - \\
+      \hline
+    \end{tabular}
+    \caption{CBT1}
+    \label{subfig:table1}
+\end{figure}
+    
+
+\begin{figure}[H]
+  \centering
+    \begin{tabular}{|ccccc|}
+      \hline
+      zdroj & SS & df & F & p-hodnota \\
+      \hline
+      class & 0.0027 & 2 & 0.1378 & 0.8713 \\
+      residual & 1.184 & 120 & - & - \\
+      \hline
+    \end{tabular}
+    \caption{CBT2}
+    \label{subfig:table2}
+\end{figure}
+
+Z tabulek analýzy rozptylu vidíme, že p-hodnoty jsou vyšší než 0.05 a tedy ani v jednom případě nezamítáme hypotézu o shodných středních hodnotnách.
+
+Protože se nám nepodařilo prokázat normální rozdělení veličin CBT3 a IOP, je nutné použít neparametrickou verzi ANOVA metody, a to Kruskalův-Wallisův test. 
+Tento test je opět implementován jako $\mathbf{kruskal}$ v knihovně $scipy.stats$.
+Hypotéza a alternativa zůstávají stejné jako v předešlých případech.
+Výsledky lze vidět v tabulce níže.
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky Kruskal-Wallisova testu}
+  \begin{tabular}{|ccc|}
+    \hline
+    veličiny & testovací statistika & p-hodnota\\
+    \hline
+    CBT3 & 0.2771 & 0.8706\\
+    IOP & 14.9622 & 0.0005\\
+    \hline
+  \end{tabular}
+\end{table}
+
+P-hodnota pro veličinu CBT3 je vyšší než 0.05, tudíž nezamítáme hypotézu shodnosti středních hodnot.
+Avšak p-hodnota pro veličinu IOP je pouze 0.0005 a tedy zamítáme hypotézu, že střední hodnoty nitroočního tlaku se s podáváním léku nemění.
+Můžeme se znovu podívat na krabicové grafy nitroočního tlaku, tentokrát bez odlehlých pozorování.
+
+\begin{figure}[H]
+  \centering
+    \includesvg[width=0.5\textwidth]{Images/violin_IOP_after.svg}
+    \caption{Krabicový graf nitroočního tlaku po vyřazení odlehlých dat}
+\end{figure}
+
+Zdá se, že střední hodnota před podáváním léku je vyšší než po začátku podávání.
+Pro podrobnější analýzu rozdílů mezi středními hodnotami použijeme Tukeyeho vícenásobné porovnávání.
+Opět lze použít funkci $\mathbf{tukey\_hsd}$ z balíku $scipy.stats$.
+
+\begin{table}[H]
+  \small
+  \centering 
+  \caption{Tukeyeho vícenásobné porovnávání}
+  \begin{tabular}{|ccccc|}
+    \hline
+    porovnání & testovací statistika & p-hodnota & dolní CI & horní CI\\
+    \hline
+    W0 - W2 & 2.415 & 0.017 & 0.358 & 4.471\\
+    W0 - W8 & 3.707 & 0.000 & 1.651 & 5.764\\
+    W2 - W0 & -2.415 & 0.017 & -4.471 & -0.358\\
+    W2 - W8 & 1.293   & 0.299  &  -0.764  &   3.349\\
+    W8 - W0  &   -3.707   &  0.000  &  -5.764 &   -1.651\\
+    W8 - W2   &  -1.293  &   0.299   & -3.349   &  0.764\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Z Tukeyeho tabulky vyplývá, že dvojice W0 - W8 i dvojice W0 - W2 mají jiné střední hodnoty.
+U dvojice W2 - W8 se naopak nepodařilo prokázat rozdílnost středních hodnot.
+
+Jak již bylo zmíněno, nakonec je nutné ještě výsledky ověřit pomocí t-testu.
+Klasický t-test lze použít pokud máme shodné rozptyly a nezávislá data.
+Vzhledem k závislosti daných veličin je nutné použít párový t-test na  dvojice (W0IOP, W2IOP) a (W0IOP, W8IOP).
+Výsledky vidíme v tabulce níže.
+Hypotézou je opět shodnost středních hodnot a alternativou jejich odlišnost.
+Pro tento test byla použita funkce $\mathbf{ttest_rel}$, opět z knihovny $scipy.stats$.
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky párového t-testu testu}
+  \begin{tabular}{|ccc|}
+    \hline
+    dvojice & t-statistika & p-hodnota\\
+    \hline
+    (W0IOP, W2IOP) & 4.1546 & 0.0.0001\\
+    (W0IOP, W8IOP) & 5.8685 & 7.2334e-7\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Párový t-test tedy na hladině 0.05 zamítá shodnost středních hodnot, a tedy potvrzuje výsledky Tukeyeho porovnávání.
+
+\newpage
+\section{Závěr}
+Cílem bylo ověřit vliv léku na hodnoty CBT1, CBT2, CBT3 a nitrooční tlak.
+Již na začátku byl pozorován vyšší nitrooční tlak než je běžný v populaci.
+Nejprve jsme na základě interpretace veličin smazali odlehlá pozorování v kterých byly hodnoty CBT veličin vyšší než 1.
+Následně jsme ověřili předpoklady pro použití ANOVA metody,přičemž se nám nepovedla prokázat normalita pro CBT3 a IOP.
+Použili jsme tedy ANOVA metodu pro CBT1 a CBT2 a neparametrickž Kruskalův-Wallisův test pro CBT3 a IOP.
+U veličin CBT1, CBT2 a CBT3 se nepodařilo prokázat odlišnost středních hodnot, a tedy zamítáme vliv používání léku na tyto veličiny.
+U veličiny IOP se nám podařila prokázat odlišnost středních hodnot a pomocí Tukeyeho porovnávání jsme zjistili, že střední hodnota nitroočního tlaku před podáváním léku
+je odlišná od středních hodnot při podávání.
+Vzhledem k tomu, že hodnoty nitroočního tlaku u zdravého člověka se pohybují mezi 10 a 20, rozdíl středních hodnot by mohl znamenat, že lék byl úspěšný a snížil nitrooční tlak nemocných pacientů.
+Z krabicového grafu vidíme, že hodnoty po 8 týdnech jsou opět nižší než hodnoty po 2 týdnech užívání, ačkoliv se v tomto případě neprokázal rozdíl středních hodnot.
+
+Závěrem tedy je, že lék pomohl ke snížení nitroočního tlaku nemocných pacientů a zároveň neměl žádné vedlejší účinky na spektrální citlivost jejich očí.
+
+\end{document}
+
+
+
