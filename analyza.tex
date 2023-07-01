@@ -222,7 +222,7 @@ Pro CBT3 tedy nebude možné použít ANOVA metodu.
 \end{table}
 
 
-Pro veličinu W2IOP opět zamítáme hypotézu o normálním rozdělení na hladině 0.05.§§
+Pro veličinu W2IOP opět zamítáme hypotézu o normálním rozdělení na hladině 0.05.
 Pro veličiny IOP a CBT3 bude tedy nutné použít neparametrickou verzi ANOVA, tedy Kruskalův-Wallisův test.\\
 
 
@@ -278,11 +278,8 @@ hodnotu F statistiky a p-hodnotu.
 Pro zisk celé tabulky analýzy rozptylu je nutné požít funkci $\mathbf{ols}$ z $statsmodels.formula.api$ pro tvorbu modelu
 a následně na ten model použít funkci $\mathbf{stats.anova\_lm}$ z $statsmodels.api$.
 
-Výsledkem metody je tabulka analýzy rozptylu, která obsahuje
-počet stupňů volnosti, hodnota F statistiky, součet čtverců(SS)
-
-zdroj rozptylu
-Tabu
+Výsledkem metody je tabulka analýzy rozptylu, která obsahuje počet stupňů volnosti, hodnotu F statistiky, součet čtverců(SS)
+a p-hodnoty.
 
 \begin{figure}[H]
   \centering
@@ -290,12 +287,11 @@ Tabu
       \hline
       zdroj & SS & df & F & p-hodnota \\
       \hline
-      class & 0.0554 & 2 & 1.603 & 0.205 \\
-      residual & 2.076 & 120 & - & - \\
+      mezi skupinami & 0.0554 & 2 & 1.603 & 0.205 \\
+      v rámci skupin & 2.076 & 120 & - & - \\
       \hline
     \end{tabular}
     \caption{CBT1}
-    \label{subfig:table1}
 \end{figure}
     
 
@@ -305,12 +301,11 @@ Tabu
       \hline
       zdroj & SS & df & F & p-hodnota \\
       \hline
-      class & 0.0027 & 2 & 0.1378 & 0.8713 \\
-      residual & 1.184 & 120 & - & - \\
+      mezi skupinami & 0.0027 & 2 & 0.1378 & 0.8713 \\
+      v rámci skupin & 1.184 & 120 & - & - \\
       \hline
     \end{tabular}
     \caption{CBT2}
-    \label{subfig:table2}
 \end{figure}
 
 Z tabulek analýzy rozptylu vidíme, že p-hodnoty jsou vyšší než 0.05 a tedy ani v jednom případě nezamítáme hypotézu o shodných středních hodnotnách.
@@ -374,7 +369,7 @@ Klasický t-test lze použít pokud máme shodné rozptyly a nezávislá data.
 Vzhledem k závislosti daných veličin je nutné použít párový t-test na  dvojice (W0IOP, W2IOP) a (W0IOP, W8IOP).
 Výsledky vidíme v tabulce níže.
 Hypotézou je opět shodnost středních hodnot a alternativou jejich odlišnost.
-Pro tento test byla použita funkce $\mathbf{ttest_rel}$, opět z knihovny $scipy.stats$.
+Pro tento test byla použita funkce $\mathbf{ttest\_rel}$, opět z knihovny $scipy.stats$.
 
 \begin{table}[H]
   \small
@@ -396,12 +391,12 @@ Párový t-test tedy na hladině 0.05 zamítá shodnost středních hodnot, a te
 \section{Závěr}
 Cílem bylo ověřit vliv léku na hodnoty CBT1, CBT2, CBT3 a nitrooční tlak.
 Již na začátku byl pozorován vyšší nitrooční tlak než je běžný v populaci.
-Nejprve jsme na základě interpretace veličin smazali odlehlá pozorování v kterých byly hodnoty CBT veličin vyšší než 1.
-Následně jsme ověřili předpoklady pro použití ANOVA metody,přičemž se nám nepovedla prokázat normalita pro CBT3 a IOP.
-Použili jsme tedy ANOVA metodu pro CBT1 a CBT2 a neparametrickž Kruskalův-Wallisův test pro CBT3 a IOP.
+Nejprve jsme na základě interpretace veličin smazali odlehlá pozorování s hodnotami CBT veličin vyššími než 1.
+Následně byly ověřeny předpoklady pro použití ANOVA metody, přičemž se nepovedlo prokázat normalitu veličin CBT3 a IOP.\\
+Použili jsme tedy ANOVA metodu pro CBT1 a CBT2 a neparametrický Kruskalův-Wallisův test pro CBT3 a IOP.
 U veličin CBT1, CBT2 a CBT3 se nepodařilo prokázat odlišnost středních hodnot, a tedy zamítáme vliv používání léku na tyto veličiny.
 U veličiny IOP se nám podařila prokázat odlišnost středních hodnot a pomocí Tukeyeho porovnávání jsme zjistili, že střední hodnota nitroočního tlaku před podáváním léku
-je odlišná od středních hodnot při podávání.
+je odlišná od středních hodnot při podávání.\\
 Vzhledem k tomu, že hodnoty nitroočního tlaku u zdravého člověka se pohybují mezi 10 a 20, rozdíl středních hodnot by mohl znamenat, že lék byl úspěšný a snížil nitrooční tlak nemocných pacientů.
 Z krabicového grafu vidíme, že hodnoty po 8 týdnech jsou opět nižší než hodnoty po 2 týdnech užívání, ačkoliv se v tomto případě neprokázal rozdíl středních hodnot.
 
