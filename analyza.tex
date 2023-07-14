@@ -85,25 +85,25 @@ Pro účely analýzy jsou veličiny označeny předponami W0, W2 a W8.
 V následující tabulce jsou shrnuty deskriptivní statistiky po vyřazení odlehlých pozorování.
 
 \begin{table}[ht]
-  \footnotesize
   \centering
-  \caption{Deskriptivní statistiky po ostranění odlehlých pozorování}
-  \begin{tabular}{|ccccccccccccc|}
+  \caption{Deskriptivní statistiky po odstranění odlehlých pozorování}
+  \begin{tabular}{|cccc|ccc|ccc|ccc|}
     \hline
-    & \multicolumn{4}{|c|}{Před podáváním} & \multicolumn{4}{c|}{Po 2 týdnech} & \multicolumn{4}{c|}{Po 8 týdnech} \\
+    & \multicolumn{3}{|c|}{CBT1} & \multicolumn{3}{c|}{CBT2} & \multicolumn{3}{c|}{CBT3} & \multicolumn{3}{c|}{IOP}\\
     \hline
-    & CBT1 & CBT2 & CBT3 & IOP & CBT1 & CBT2 & CBT3 & IOP & CBT1 & CBT2 & CBT3 & IOP \\
+    & W0 & W2 & W8 & W0 & W2 & W8 & W0 & W2 & W8 & W0 & W2 & W8 \\
     \hline
-    průměr & 0.67 & 0.50 & 0.39 & 21.46 & 0.64 & 0.49 & 0.39 & 19.05 & 0.62 & 0.49 & 0.39 & 17.76 \\
-    std & 0.12 & 0.08 & 0.09 & 4.30 & 0.13 & 0.10 & 0.06 & 3.67 & 0.15 & 0.11 & 0.07 & 3.77 \\
-    min & 0.44 & 0.33 & 0.24 & 13.00 & 0.43 & 0.28 & 0.24 & 14.00 & 0.35 & 0.26 & 0.22 & 11.00 \\
-    25\% & 0.56 & 0.44 & 0.34 & 18.00 & 0.54 & 0.42 & 0.35 & 17.00 & 0.50 & 0.41 & 0.35 & 15.00 \\
-    50\% & 0.69 & 0.50 & 0.39 & 22.00 & 0.60 & 0.49 & 0.40 & 18.00 & 0.58 & 0.48 & 0.40 & 17.00 \\
-    75\% & 0.76 & 0.57 & 0.42 & 25.00 & 0.75 & 0.57 & 0.43 & 22.00 & 0.75 & 0.58 & 0.44 & 19.00 \\
-    max & 0.90 & 0.65 & 0.75 & 29.00 & 0.83 & 0.66 & 0.48 & 29.00 & 0.90 & 0.67 & 0.52 & 26.00 \\
+    průměr  & 0.67 & 0.64 & 0.62 & 0.50 & 0.49 & 0.49 & 0.39 & 0.39 & 0.39 & 21.46 & 19.05 & 17.76 \\
+    std     & 0.12 & 0.13 & 0.15 & 0.08 & 0.10 & 0.11 & 0.09 & 0.06 & 0.07 & 4.30 & 3.67 & 3.77\\
+    min     & 0.44 & 0.43 & 0.35 & 0.33 & 0.28 & 0.26 & 0.24 & 0.24 & 0.22 & 13.00 & 14.00 & 11.00 \\
+    25\%    & 0.56 & 0.54 & 0.50 & 0.44 & 0.42 & 0.41 & 0.34 & 0.35 & 0.35 & 18.00 & 17.00 & 15.00 \\
+    50\%    & 0.69 & 0.60 & 0.58 & 0.50 & 0.49 & 0.48 & 0.39 & 0.40 & 0.40 & 22.00 & 18.00 & 17.00 \\
+    75\%    & 0.76 & 0.75 & 0.75 & 0.57 & 0.57 & 0.58 & 0.42 & 0.43 & 0.44 & 25.00 & 22.00 & 19.00 \\
+    max     & 0.90 & 0.83 & 0.90 & 0.65 & 0.66 & 0.67 & 0.75 & 0.48 & 0.52 & 29.00 & 29.00 & 26.00 \\
     \hline
   \end{tabular}
 \end{table}
+
 
 \newpage
 
@@ -291,7 +291,7 @@ a p-hodnoty.
       v rámci skupin & 2.076 & 120 & - & - \\
       \hline
     \end{tabular}
-    \caption{CBT1}
+    \caption{ANOVA CBT1}
 \end{figure}
     
 
@@ -305,12 +305,42 @@ a p-hodnoty.
       v rámci skupin & 1.184 & 120 & - & - \\
       \hline
     \end{tabular}
-    \caption{CBT2}
+    \caption{ANOVA CBT2}
 \end{figure}
 
 Z tabulek analýzy rozptylu vidíme, že p-hodnoty jsou vyšší než 0.05 a tedy ani v jednom případě nezamítáme hypotézu o shodných středních hodnotnách.
 
 Protože se nám nepodařilo prokázat normální rozdělení veličin CBT3 a IOP, je nutné použít neparametrickou verzi ANOVA metody, a to Kruskalův-Wallisův test. 
+Čistě pro ilustraci můžeme ale vyzkoušet i ANOVA metodu.
+
+\begin{figure}[H]
+  \centering
+    \begin{tabular}{|ccccc|}
+      \hline
+      zdroj & SS & df & F & p-hodnota \\
+      \hline
+      mezi skupinami & 0.0004 & 2 & 0.0446 & 0.9563 \\
+      v rámci skupin & 0.6654 & 120 & - & - \\
+      \hline
+    \end{tabular}
+    \caption{ANOVA CBT3}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+    \begin{tabular}{|ccccc|}
+      \hline
+      zdroj & SS & df & F & p-hodnota \\
+      \hline
+      mezi skupinami & 290 & 2 & 9.4289 & 0.0001 \\
+      v rámci skupin & 1847 & 120 & - & - \\
+      \hline
+    \end{tabular}
+    \caption{ANOVA IOP}
+\end{figure}
+
+Vidíme že ANOVA zamítá rovnost středních hodnot pro nitrooční tlak.
+Nyní pro tyto dvě veličiny použijeme neparametrický Kruskal-Wallisův test.
 Tento test je opět implementován jako $\mathbf{kruskal}$ v knihovně $scipy.stats$.
 Hypotéza a alternativa zůstávají stejné jako v předešlých případech.
 Výsledky lze vidět v tabulce níže.
@@ -331,6 +361,7 @@ Výsledky lze vidět v tabulce níže.
 
 P-hodnota pro veličinu CBT3 je vyšší než 0.05, tudíž nezamítáme hypotézu shodnosti středních hodnot.
 Avšak p-hodnota pro veličinu IOP je pouze 0.0005 a tedy zamítáme hypotézu, že střední hodnoty nitroočního tlaku se s podáváním léku nemění.
+Vidíme, že výsledky tohoto testu se neliší od výsledků ilustrativní ANOVA metody.
 Můžeme se znovu podívat na krabicové grafy nitroočního tlaku, tentokrát bez odlehlých pozorování.
 
 \begin{figure}[H]
@@ -340,7 +371,9 @@ Můžeme se znovu podívat na krabicové grafy nitroočního tlaku, tentokrát b
 \end{figure}
 
 Zdá se, že střední hodnota před podáváním léku je vyšší než po začátku podávání.
-Pro podrobnější analýzu rozdílů mezi středními hodnotami použijeme Tukeyeho vícenásobné porovnávání.
+
+Pro podrobnější analýzu rozdílů mezi středními hodnotami lze použít pro normální data Tukeyeho vícenásobné porovnávání.
+Ačkoliv naše data nejsou normální, pro ilustraci použijeme i tento test.
 Opět lze použít funkci $\mathbf{tukey\_hsd}$ z balíku $scipy.stats$.
 
 \begin{table}[H]
@@ -353,20 +386,63 @@ Opět lze použít funkci $\mathbf{tukey\_hsd}$ z balíku $scipy.stats$.
     \hline
     W0 - W2 & 2.415 & 0.017 & 0.358 & 4.471\\
     W0 - W8 & 3.707 & 0.000 & 1.651 & 5.764\\
-    W2 - W0 & -2.415 & 0.017 & -4.471 & -0.358\\
     W2 - W8 & 1.293   & 0.299  &  -0.764  &   3.349\\
-    W8 - W0  &   -3.707   &  0.000  &  -5.764 &   -1.651\\
-    W8 - W2   &  -1.293  &   0.299   & -3.349   &  0.764\\
     \hline
   \end{tabular}
 \end{table}
 
-Z Tukeyeho tabulky vyplývá, že dvojice W0 - W8 i dvojice W0 - W2 mají jiné střední hodnoty.
-U dvojice W2 - W8 se naopak nepodařilo prokázat rozdílnost středních hodnot.
+Z Tukeyeho tabulky vyplývá, že dvojice (W0, W8) i dvojice (W0, W2) mají jiné střední hodnoty.
+U dvojice (W2, W8) se naopak nepodařilo prokázat rozdílnost středních hodnot.
+
+Vzhledem k tomu, že se neprokázala normalita IOP dat, je vhodnější použít neparametrický Dunnův test.
+
+\begin{table}[H]
+  \small
+  \centering 
+  \caption{Výsledky Dunnova testu}
+  \begin{tabular}{|cc|}
+    \hline
+    porovnání & p-hodnota\\
+    \hline
+    W0 - W2 & 0.0147\\
+    W0 - W8 & 0.0001\\
+    W2 - W8 & 0.1674\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Podle výsledných p-hodnot vidíme, že se Dunnův test shoduje s Tukeyeho a tedy zamítáme hypotézu o rovnosti středních hodnot (W0, W2) a (W0, W8).
 
 Jak již bylo zmíněno, nakonec je nutné ještě výsledky ověřit pomocí t-testu.
 Klasický t-test lze použít pokud máme shodné rozptyly a nezávislá data.
 Vzhledem k závislosti daných veličin je nutné použít párový t-test na  dvojice (W0IOP, W2IOP) a (W0IOP, W8IOP).
+Aby byly splněny předpoklady párového t-testu, je nutné ověřit normální rozdělení rozdílů testovaných veličin. K tomu lze opět použít QQ ploty a Lillieforsův test.
+
+
+\begin{figure}[H]
+  \centering
+    \includesvg[width=0.8\textwidth]{Images/ttest_qqplot.svg}
+    \caption{QQ plot pro rozdíly W0-W2 a W0-W8}
+\end{figure}
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky Lillieforsova testu}
+  \begin{tabular}{|ccc|}
+    \hline
+    veličiny & KS statistika & p-hodnota\\
+    \hline
+    W0 - W2 & 0.0871 & 0.5980\\
+    W0 - W8 & 0.2296 & 0.0009\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Vidíme, že Lillieforsův test zamítá na hladině 0.05 normalitu rozdílů (W0IOP, W8IOP). Pro tuto dvojici bude tedy nutné použít neparametrickou verzi t-testu, v tomto
+případě Wilcoxonův test.
+
+Pro ilustraci opět použijeme párový test i na dvojici (W0IOP, W8IOP).
 Výsledky vidíme v tabulce níže.
 Hypotézou je opět shodnost středních hodnot a alternativou jejich odlišnost.
 Pro tento test byla použita funkce $\mathbf{ttest\_rel}$, opět z knihovny $scipy.stats$.
@@ -385,7 +461,24 @@ Pro tento test byla použita funkce $\mathbf{ttest\_rel}$, opět z knihovny $sci
   \end{tabular}
 \end{table}
 
-Párový t-test tedy na hladině 0.05 zamítá shodnost středních hodnot, a tedy potvrzuje výsledky Tukeyeho porovnávání.
+Pro (W0IOP, W8IOP) použijeme i Wilcoxonův test.
+
+\begin{table}[H]
+  \small
+  \centering
+  \caption{Výsledky Wilcoxonova testu}
+  \begin{tabular}{|ccc|}
+    \hline
+    dvojice & statistika & p-hodnota\\
+    \hline
+    (W0IOP, W8IOP) & 65 & 9.0315e-6\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Vidíme tedy, že ani párový t-test ani Wilcoxonův test na hladině 0.05 zamítají shodnost středních hodnot, a tedy potvrzují výsledky Tukeyeho porovnávání i Dunnova testu.
+
+
 
 \newpage
 \section{Závěr}
@@ -395,7 +488,7 @@ Nejprve jsme na základě interpretace veličin smazali odlehlá pozorování s 
 Následně byly ověřeny předpoklady pro použití ANOVA metody, přičemž se nepovedlo prokázat normalitu veličin CBT3 a IOP.\\
 Použili jsme tedy ANOVA metodu pro CBT1 a CBT2 a neparametrický Kruskalův-Wallisův test pro CBT3 a IOP.
 U veličin CBT1, CBT2 a CBT3 se nepodařilo prokázat odlišnost středních hodnot, a tedy zamítáme vliv používání léku na tyto veličiny.
-U veličiny IOP se nám podařila prokázat odlišnost středních hodnot a pomocí Tukeyeho porovnávání jsme zjistili, že střední hodnota nitroočního tlaku před podáváním léku
+U veličiny IOP se nám podařila prokázat odlišnost středních hodnot a pomocí Tukeyeho porovnávání a Dunnova testu jsme zjistili, že střední hodnota nitroočního tlaku před podáváním léku
 je odlišná od středních hodnot při podávání.\\
 Vzhledem k tomu, že hodnoty nitroočního tlaku u zdravého člověka se pohybují mezi 10 a 20, rozdíl středních hodnot by mohl znamenat, že lék byl úspěšný a snížil nitrooční tlak nemocných pacientů.
 Z krabicového grafu vidíme, že hodnoty po 8 týdnech jsou opět nižší než hodnoty po 2 týdnech užívání, ačkoliv se v tomto případě neprokázal rozdíl středních hodnot.
